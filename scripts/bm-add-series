@@ -20,7 +20,7 @@ if __name__ == "__main__":
         if len(sys.argv) == 2 and sys.argv[1] in ["-h", "--help"]:
             common.cli_module_help(globals())
         else:
-            print "Usage: %s FILE BOOKMARK" % name
+            print ("Usage: %s FILE BOOKMARK" % name)
         sys.exit(1)
 
     file = sys.argv[1]
@@ -44,8 +44,8 @@ if __name__ == "__main__":
             r = a
 
     if r is not None:
-        print "-".join([bm, str(r)])
+        print ("-".join([bm, str(r)]))
     else:
-        print bm
+        print (bm)
 
 

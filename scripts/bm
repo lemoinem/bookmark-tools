@@ -103,7 +103,7 @@ def cli_export(args = []):
                 out = open(args[0], "wb")
             except:
                 common.error("Couldn't open '%s' for reading" % args[0])
-            os.fchmod(out.fileno(), 0755)
+            os.fchmod(out.fileno(), 0o755)
         else:
             common.error("Expecting only one file argument after export command")
 
@@ -157,10 +157,10 @@ def cli_print_bookmark(args):
         if "{}" in execargs:
             execargs[execargs.index("{}")] = "\"%s\"" % b[0][1].replace("'", "\'")
         if execargs != []:
-            print " ".join(execargs)
+            print (" ".join(execargs))
             call(execargs, shell = True)
         else:
-            print os.path.join(b[0][1], os.path.sep.join(req[1:]))
+            print (os.path.join(b[0][1], os.path.sep.join(req[1:])))
     else:
         sys.exit(1)
 
@@ -183,19 +183,19 @@ def cli_print_all_matching_bookmarks(args):
             execargs[i] = tmp
         else:
             if req[1:] == []:
-                print "%s [%s]" % (dest, tag)
+                print ("%s [%s]" % (dest, tag))
             else:
                 suf = os.path.sep.join(req[1:])
                 newdest = os.path.join(dest, suf)
                 if os.path.exists(newdest):
-                    print "%s [%s]" % (newdest, os.path.join(tag, suf))
+                    print ("%s [%s]" % (newdest, os.path.join(tag, suf)))
                 else:
                     last = os.path.sep.join(req[1:-1])
                     testpath = os.path.join(dest, last)
                     if os.path.exists(testpath):
                         for x in os.listdir(testpath):
                             if x.startswith(req[-1]) and os.path.isdir(os.path.join(testpath, x)):
-                                print "%s [%s]" % (os.path.join(testpath, x), os.path.join(tag, last, x))
+                                print ("%s [%s]" % (os.path.join(testpath, x), os.path.join(tag, last, x)))
                     
 
 
@@ -203,13 +203,13 @@ def cli_clear(args):
     """Clear the bookmark index."""
     r = raw_input("Are you sure you want to clear your bookmark file [No/yes]? ")
     if str.lower(r) in ["y", "ye", "yes", "yeah", "yaaar", "aye"]:
-        print "Ok, let's do this thing...",
+        print ("Ok, let's do this thing...",end="")
         clear_bookmarks(get_conf_location())
-        print "DONE"
+        print ("DONE")
     elif r == "Open the pod bay doors, HAL":
-        print "I'm sorry, Dave. I'm afraid I can't do that."
+        print ("I'm sorry, Dave. I'm afraid I can't do that.")
     else:
-        print "Phew!"
+        print ("Phew!")
 
 
 def cli_remove(args):
@@ -307,13 +307,13 @@ def command_line_interface():
     elif command in ["-st", "--sort-tags"]:
         cli_sort_tags()
     elif command in ["-?", "--bookmark-file"]:
-        print get_conf_location()
+        print (get_conf_location())
     elif command in ["--version", "-v"]:
         common.cli_version(name, description)
     elif command[0] != "-":
         cli_print_bookmark(sys.argv[1:])
     else:
-        print "Command line option '%s' not known." % command
+        print ("Command line option '%s' not known." % command)
 
 if __name__ == "__main__":
     command_line_interface()

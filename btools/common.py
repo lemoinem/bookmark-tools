@@ -110,8 +110,8 @@ def cli_output_help(prog, description, usage, commands, examples, option_title =
 
 def cli_version(name, description):
     name = os.path.basename(name)
-    print "%s %s - %s" % (name, VERSION, description)
-    print "© 2008, 2009, Bart Spaans <bart@bookmark-tools.com>"
+    print ("%s %s - %s" % (name, VERSION, description))
+    print ("© 2008, 2009, Bart Spaans <bart@bookmark-tools.com>")
 
 def cli_usage(prog, usagelist):
     prog = os.path.basename(prog)
@@ -125,38 +125,38 @@ def cli_usage(prog, usagelist):
         elif type(u) == tuple and len(u[0]) > maxlen:
             maxlen = len(u[0])
     print
-    print "Usage: ", 
+    print ("Usage: ", )
     for u in usagelist:
         if type(u) == str:
-            print prog, u, "\n\t",
+            print (prog, u, end="\n\t")
         else:
-            print prog, u[0],
-            print " " * ((maxlen - len(u[0])) + 3),
-            print u[1], "\n\t",
+            print (prog, u[0],end="")
+            print (" " * ((maxlen - len(u[0])) + 3), end="")
+            print (u[1], end="\n\t")
     print
 
 
 def cli_examples(prog, examples):
     prog = os.path.basename(prog)
-    print "Examples:"
+    print ("Examples:")
     maxcommandlen = -1
     for command, description in examples:
         if len(command) > maxcommandlen:
             maxcommandlen = len(command)
     for command, description in examples:
-        print "\t", prog, command,
-        print " " * ((maxcommandlen - len(command)) + 4),
-        print description
+        print ("\t", prog, command,end="")
+        print (" " * ((maxcommandlen - len(command)) + 4),end="")
+        print (description)
 
 
 
 def cli_help(commands, title = "Commands:"):
-    print title
+    print (title)
     for com, args, description in commands:
-            print "\n\t", 
+            print ("\n\t", end="")
             for c in com:
-                    print "%s %s  " % (c, args),
-            print "\n\t    %s" % description
+                    print ("%s %s  " % (c, args),end="")
+            print ("\n\t    %s" % description)
     print
 
 
@@ -167,8 +167,8 @@ def cli_command_help(args, cmd):
                 fmt = "%s"
                 if len(c[0]) > 1:
                     fmt = "(%s)"
-                print "Usage: %s %s" % (fmt % ", ".join(c[0]) , c[1])
-                print "      ", c[2]
+                print ("Usage: %s %s" % (fmt % ", ".join(c[0]) , c[1]))
+                print ("      ", c[2])
 
 def default_editor():
     return os.environ.get("EDITOR", DEFAULT_EDITOR)

@@ -256,7 +256,7 @@ def command_line_interface():
             if cmd != "":
                 conf[cmd] = a
             else:
-                print "Unknown command"
+                print ("Unknown command")
             cmd = ""
             argpending = False
     if argpending:

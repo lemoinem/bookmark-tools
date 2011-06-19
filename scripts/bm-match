@@ -47,14 +47,14 @@ def output_weighted_tabled(table):
         return
     width = max(map(lambda a: len(a[0]), table))
     for bookmark, weight in table:
-        print ("%" + str(width) + "s    %.4f") % (bookmark, weight)
+        print (("%" + str(width) + "s    %.4f") % (bookmark, weight))
 
 
 def inspect(fs, file):
     if os.path.isdir(file):
         map(lambda a: inspect(fs, os.path.join(file, a)), os.listdir(file))
     else:
-        print "===", file, "==="
+        print ("===", file, "===")
         output_weighted_tabled(fs.get_weighted_table(file))
 
 def cli_edit(args):
@@ -69,7 +69,7 @@ def cli_inspect_file(args):
 def cli_new_config_file(forcenew = False):
     if os.path.exists(".bm-match"):
         if not forcenew:
-            print "Error: .bm-match already exists in this directory. Use -nf to force a new file."
+            print ("Error: .bm-match already exists in this directory. Use -nf to force a new file.")
             return
 
     f = open(common.template, "r")
@@ -79,7 +79,7 @@ def cli_new_config_file(forcenew = False):
     f = open(".bm-match", "w")
     f.write(tmp)
     f.close()
-    print ".bm-match written succesfully."
+    print (".bm-match written succesfully.")
     common.edit_file(".bm-match")
 
 

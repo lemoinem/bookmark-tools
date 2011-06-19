@@ -14,5 +14,5 @@ links += "</ul>"
 template = f.read()
 f.close()
 result = template.replace("%links%", links)
-print result
+print (result)
 

@@ -117,7 +117,7 @@ def cli_match(files, options):
                 common.debug("Changed best bookmark to %s" % best)
             else:
                 common.error("bm-exec argument didn't return a new bookmark")
-        print file, best
+        print (file, end=best)
         if options["exec_hook"] != "" and best != "":
             e = options["exec_hook"]
             hook = common.replace_variables(e, {"file": file,
@@ -132,9 +132,9 @@ def cli_help():
 
 def cli_default_patterns():
     for x in pattern_collections.keys():
-        print x
+        print (x)
 
-def parse_options(args, options):
+deend=f parse_options(args, options):
     argumentsPending = False
     last = ""
     res = options

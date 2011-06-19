@@ -48,22 +48,22 @@ class source_shell_script(install_data):
             if cmd in bashrc.splitlines():
                 return
             else:
-                print "Sourcing bm.sh"
+                print ("Sourcing bm.sh")
                 try:
                     f = open(to, "a")
                 except:
-                    print "Error: Couldn't write to %s" % to
+                    print ("Error: Couldn't write to %s" % to)
                     return
                 f.write(cmd + os.linesep)
                 f.close()
         else:
-            print "Warning: the shell functions could not be sourced"
+            print ("Warning: the shell functions could not be sourced")
 
     def update_windows_registry(self):
         try:
             import _winreg
         except:
-            print "Couldn't change PATH variable in registry, because the _winreg modules could not be loaded."
+            print ("Couldn't change PATH variable in registry, because the _winreg modules could not be loaded.")
             return
 
         path = os.path.join(os.environ["PROGRAMFILES"], "btools", "bin")
@@ -73,7 +73,7 @@ class source_shell_script(install_data):
         try:
             key = _winreg.OpenKey(reg, regpath, 0, _winreg.KEY_ALL_ACCESS)
         except:
-            print "Error getting PATH from registry"
+            print ("Error getting PATH from registry")
             return
 
         value, type_id = _winreg.QueryValueEx(key, "PATH")
@@ -84,9 +84,9 @@ class source_shell_script(install_data):
 
         try: 
             _winreg.SetValueEx(key, "PATH", 0, type_id, ";".join(current + [path]))
-            print "Updated %s\\PATH registry value" % (regpath)
+            print ("Updated %s\\PATH registry value" % (regpath))
         except:
-            print "Error updating %s\\PATH registry value" % (regpath)
+            print ("Error updating %s\\PATH registry value" % (regpath))
 
 
 

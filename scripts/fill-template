@@ -59,4 +59,4 @@ def fill_template():
     return replace_with(template, replaceDict)
 
 if __name__ == "__main__":
-    print fill_template()
+    print (fill_template())

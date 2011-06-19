@@ -89,7 +89,7 @@ def build_documentation(dest = "."):
         d = os.path.join(dest, "%s.1" % results[f]["name"])
         mandump = open(d, "w")
         mandump.write(man)
-        print "Written %s." % d
+        print ("Written %s." % d)
         mandump.close()
 
 if __name__ == "__main__":
@@ -98,8 +98,8 @@ if __name__ == "__main__":
         if os.path.isdir(dest):
             build_documentation(dest)
         else:
-            print "Error: second argument is not a valid directory."
-            print "Usage: %s [DEST]" % sys.argv[0]
+            print ("Error: second argument is not a valid directory.")
+            print ("Usage: %s [DEST]" % sys.argv[0])
     else:
         build_documentation()
 

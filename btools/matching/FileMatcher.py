@@ -132,14 +132,14 @@ class FileMatcher:
                     t = common.theme
                     no = common.NOCOLOR
                     print
-                    print "=" * 80
+                    print ( "=" * 80)
                     print
-                    print "%s%s%s %s===>%s %s%s%s" % (t[2], file, no, t[1], no,
-                                                      t[3],  dest, no)
-                    print "%sMatched on %s%s" % (t[1], x[0], no)
-                    print "%sThe following command is about to be executed%s" % (t[1], no)
+                    print ("%s%s%s %s===>%s %s%s%s" % (t[2], file, no, t[1], no,
+                                                      t[3],  dest, no))
+                    print ("%sMatched on %s%s" % (t[1], x[0], no))
+                    print ("%sThe following command is about to be executed%s" % (t[1], no))
                     print
-                    print "   ", e
+                    print ("   ", e)
                     print
                     proceed= raw_input("Proceed? [Y/n/q] ").lower()
                     if proceed == "": proceed = "y"

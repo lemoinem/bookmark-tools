@@ -178,7 +178,7 @@ def write_dict(loc, conf):
 def blog_init(title = "Untitled Weblog", authors = "", url="", feed=""):
     loc = blog_location()
     if path.exists(loc):
-        print "Blog already exists"
+        print ("Blog already exists")
         return 0
 
     try:
@@ -378,13 +378,13 @@ def output_status(loc):
         lastpub = published[max(published, key=lambda x: published[x])]
 
     title = conf.get("title", "Untitled")
-    print "Location:", loc
-    print "Title:", title
+    print ("Location:", loc)
+    print ("Title:", title)
     if lastpub != 0:
-        print "Last publication:", time.ctime(lastpub)
+        print ("Last publication:", time.ctime(lastpub))
     else:
-        print "Unpublished"
-    print "-" * 50, "\n"
+        print ("Unpublished")
+    print ("-" * 50, end="\n")
 
     for i in ids:
         fmt = "%%-%ds" % (maxname + 7)
@@ -398,9 +398,9 @@ def output_status(loc):
             status = "Edited since last publication"
         else:
             status += time.strftime("%A, %D", time.localtime(published[i]))
-        print fmt % names[i], status
+        print (fmt % names[i], status)
     if ids == []:
-        print "Empty index. Try adding some files with the add command"
+        print ("Empty index. Try adding some files with the add command")
     print
 
 
@@ -427,14 +427,14 @@ def output_log(loc, outputObjects, verbose):
             maxname = len(names[i])
 
     if not outputObjects:
-        print "Location:", loc
-        print "-" * 50
+        print ("Location:", loc)
+        print ("-" * 50)
         print
 
     s = sorted(published.items(), key=lambda x: x[1], reverse=True)
 
     if ids == [] and not outputObjects:
-        print "Empty index"
+        print ("Empty index")
     for id, pub in s:
         fmt = "%%-%ds" % (maxname + 7)
 
@@ -442,11 +442,11 @@ def output_log(loc, outputObjects, verbose):
         pub = time.strftime(timefmt, time.localtime(pub)) if pub != 0 else "Unpublished"
         if not verbose:
             if not outputObjects:
-                print fmt % names[id], pub
+                print (fmt % names[id], pub)
             else:
-                print fmt % str(id), pub
+                print (fmt % str(id), pub)
         else:
-            print fmt % names[id], id, "      ", pub
+            print (fmt % names[id], id, "      ", pub)
     if not outputObjects:
         print
 
@@ -486,13 +486,13 @@ def parse_and_set_global_options(args):
                     common.loglevel = 4
                 elif x == "-?":
                     loc = existing_blog_location()
-                    print loc
+                    print (loc)
                     sys.exit(0)
                 elif x in ["-h", "--help"]:
                     cli_help()
                     sys.exit(0)
                 else:
-                    print "Unknown command", x
+                    print ("Unknown command", x)
             else:
                 return args[i+1:], x
         else:
@@ -579,7 +579,7 @@ def cli_config(args):
             return cli_config_list_all(conf)
         else:
             for x in args[1:]:
-                print "%s: %s" % (x, pipes.quote(conf.get(x, '')))
+                print ("%s: %s" % (x, pipes.quote(conf.get(x, ''))))
     elif com in ["set"]:
         if len(args) >= 3:
 
@@ -700,23 +700,23 @@ def cli_info(args):
         common.error("Expecting object arguments")
 
     for x in args:
-        print "-" * 40
-        print "%s:\n" % x
+        print ("-" * 40)
+        print ("%s:\n" % x)
         cli_meta([x])
-    print "-" * 40
+    print ("-" * 40)
 
 def output_dict_file(loc, only = None):
     for var, val in read_dict_from_file( loc ).items():
         if only is not None:
             if var in only:
-                print "%s: %s" % (var, val)
+                print ("%s: %s" % (var, val))
         else:
-            print "%s: %s" % (var, val)
+            print ("%s: %s" % (var, val))
 
 
 def cli_config_list_all(conf):
     for var, val in conf.items():
-        print "%s: %s" % (var, pipes.quote(val))
+        print ("%s: %s" % (var, pipes.quote(val)))
 
 def cli_publish(args):
     loc = existing_blog_location()

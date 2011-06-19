@@ -31,7 +31,7 @@ def read_bookmarks(file):
     try:
         f = open(file, "r")
     except:
-        print "The index is currently empty. You can add some bookmarks with --add."
+        print ("The index is currently empty. You can add some bookmarks with --add.")
         sys.exit(1)
 
     rawdata = f.readlines()
@@ -90,7 +90,7 @@ def display_bookmarks(file):
     pathpad = "%%-%ds" % (max(map(lambda x: len(x[1]), bm)) + 2)
 
     for i, (tag, dest) in enumerate(bm):
-        print "%s. %s [%s]" % (nrpad % i, pathpad % dest, tag)
+        print ("%s. %s [%s]" % (nrpad % i, pathpad % dest, tag))
 
 
 def display_colored_bookmarks(file):
@@ -102,7 +102,7 @@ def display_colored_bookmarks(file):
     nrpad = "%%%dd" % (int(math.ceil(math.log10(len(bm)))) + 1)
     pathpad = "%%-%ds" % (max(map(lambda x: len(x[1]), bm)) + 2)
     for i, (tag, dest) in enumerate(bm):
-        print "%s%s.%s  %s %s [%s] %s" % (t[1], (nrpad % i), t[2], pathpad % dest, t[3], tag, common.NOCOLOR)
+        print ("%s%s.%s  %s %s [%s] %s" % (t[1], (nrpad % i), t[2], pathpad % dest, t[3], tag, common.NOCOLOR))
 
 
 
@@ -113,7 +113,7 @@ def bookmarks_to_symlinks(bookmarks, dest_dir):
 
     for tag, src in bookmarks:
         dest = os.path.join(dest_dir, tag)
-        print "Linking %s to %s." % (dest, src)
+        print ("Linking %s to %s." % (dest, src))
         os.symlink(src, dest)
 
 
